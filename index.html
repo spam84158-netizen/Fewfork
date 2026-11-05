@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Seen Angel react bot</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23ffd88a' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/cover.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/cover.png">
+<link rel="apple-touch-icon" href="/assets/cover.png">
+<meta name="theme-color" content="#070b2a">
+<meta name="msapplication-TileColor" content="#070b2a">
+<meta name="description" content="Seen Angel react bot — Telegram channel reaction automation with curated standard and custom emojis, Stars plans and referral rewards.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Seen Angel react bot">
+<meta property="og:type" content="website">
+<meta property="og:url" content="">
+<meta property="og:image" content="/assets/banner.png">
+<meta property="og:image:secure_url" content="/assets/banner.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Seen Angel react bot — Telegram reactions">
+<meta property="og:description" content="Telegram channel reaction automation with curated emojis, Stars plans and referral rewards.">
+<meta property="og:site_name" content="Seen Angel react bot">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@SeenReact_app">
+<meta name="twitter:creator" content="@SeenReact_app">
+<meta name="twitter:title" content="Seen Angel react bot">
+<meta name="twitter:description" content="Telegram channel reaction automation with custom emoji controls and referral rewards.">
+<meta name="twitter:image" content="/assets/banner.png">
+<meta name="twitter:image:alt" content="Seen Angel react bot — Telegram reactions">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Seen Angel react bot","description":"Seen Angel react bot — automated Telegram channel reactions, custom emoji selection, Stars plans and referral rewards.","applicationCategory":"CommunicationApplication","operatingSystem":"a persistent Node.js server","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Seen Angel react bot","url":"https://t.me/SeenReact_app"},"image":"/assets/banner.png","softwareVersion":"3.0","aggregateRating":{"@type":"AggregateRating","ratingValue":"5","ratingCount":"1"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070b2a; --ink2:#0e1445; --pearl:#f6f1ff; --dim:#a7a9d6;
+  --halo:#ffd88a; --rose:#ff7ab6; --sky:#7cc7ff;
+  --disp:'Bricolage Grotesque',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--disp);background:var(--ink);color:var(--pearl);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  padding-top:env(safe-area-inset-top,0px)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--halo);color:var(--ink)}
+:focus-visible{outline:2px solid var(--halo);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+#sky{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(60% 50% at 80% 0%,#2a1f6e55,transparent 70%),radial-gradient(50% 40% at 0% 100%,#0b4a7a44,transparent 70%),var(--ink)}
+#glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle,#ffd88a22,transparent 65%);transition:opacity .4s}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);z-index:200;background:linear-gradient(90deg,var(--sky),var(--halo),var(--rose))}
+#fx{position:fixed;inset:0;z-index:150;pointer-events:none;overflow:hidden}
+.pop{position:absolute;font-size:28px;will-change:transform,opacity;user-select:none}
+
+/* top bar */
+header{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:0;right:0;z-index:100;display:flex;justify-content:center;pointer-events:none}
+.nav{pointer-events:auto;display:flex;align-items:center;gap:6px;padding:7px 8px 7px 14px;border-radius:999px;
+  background:#0e144588;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid #ffffff1c}
+.nav b{font-weight:800;font-size:15px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;margin-right:6px;white-space:nowrap}
+.ring{width:18px;height:18px;border-radius:50%;border:3px solid var(--halo);box-shadow:0 0 14px var(--halo),inset 0 0 8px #ffd88a88;animation:spin 6s linear infinite}
+.nav a.l{padding:6px 12px;border-radius:999px;font-size:13px;color:var(--dim);transition:.2s}
+.nav a.l:hover{color:var(--pearl);background:#ffffff14}
+.go{background:var(--halo);color:var(--ink);font-weight:700;font-size:13px;padding:8px 16px;border-radius:999px;white-space:nowrap;transition:transform .2s,box-shadow .2s}
+.go:hover{transform:scale(1.06);box-shadow:0 0 28px #ffd88a77}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 60px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;width:100%}
+h1{font-size:clamp(52px,10.5vw,138px);line-height:.88;letter-spacing:-.055em;font-weight:800}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}
+h1 .ln span{display:inline-block;transform:translateY(110%) rotate(6deg);animation:rise 1s cubic-bezier(.2,.9,.2,1) forwards}
+h1 .ln:nth-child(2) span{animation-delay:.12s;font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.03em;
+  background:linear-gradient(100deg,var(--halo),var(--rose) 55%,var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:26px 0 8px;font-size:12px;letter-spacing:.02em;color:var(--sky);display:flex;align-items:center;gap:8px}
+.sub i{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 0 #7cc7ff;animation:ping 1.8s infinite}
+.desc{max-width:470px;color:var(--dim);font-size:17px;margin:14px 0 30px;opacity:0;animation:fade .9s .55s forwards}
+.btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fade .9s .7s forwards}
+.b{display:inline-flex;align-items:center;gap:8px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid #ffffff2e;transition:.25s;font-family:var(--disp);cursor:pointer;color:var(--pearl);background:none}
+.b.p{background:var(--halo);color:var(--ink);border-color:var(--halo);box-shadow:0 10px 40px #ffd88a33}
+.b:hover{transform:translateY(-3px) scale(1.03)}
+.b.p:hover{box-shadow:0 14px 50px #ffd88a77}
+.b:not(.p):hover{background:#ffffff12;border-color:var(--halo)}
+
+/* live post */
+.stage{perspective:1000px;display:flex;justify-content:center}
+.post{width:100%;max-width:380px;border-radius:26px;background:linear-gradient(160deg,#1a2160,#0e1445);border:1px solid #ffffff22;
+  padding:12px;box-shadow:0 40px 90px #00000088,0 0 80px #6b5cff33;transform-style:preserve-3d;transition:transform .15s ease-out;position:relative;
+  opacity:0;animation:fade 1s .4s forwards}
+.halo{position:absolute;left:50%;top:-34px;width:150px;height:44px;margin-left:-75px;border-radius:50%;border:5px solid var(--halo);
+  box-shadow:0 0 30px var(--halo),inset 0 0 20px #ffd88aaa;transform:translateZ(60px) rotateX(70deg);animation:float 4s ease-in-out infinite}
+.pic{border-radius:18px;aspect-ratio:1/1;background:linear-gradient(135deg,#3b2f9e,#ff7ab6 60%,#ffd88a);overflow:hidden;position:relative}
+.pic img{width:100%;height:100%;object-fit:cover;display:block}
+.pic::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,#ffffff30 50%,transparent 60%);transform:translateX(-120%);animation:sheen 5s 1.5s infinite}
+.meta{padding:12px 6px 4px;font-size:13px;color:var(--dim)}
+.meta strong{color:var(--pearl);font-size:15px;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:7px;padding:10px 4px 4px;min-height:44px}
+.chip{display:inline-flex;gap:6px;align-items:center;padding:5px 11px;border-radius:999px;background:#ffffff14;border:1px solid #ffffff1c;font-size:14px;font-variant-numeric:tabular-nums;animation:chip .5s cubic-bezier(.3,1.8,.5,1)}
+.chip.bump{animation:bump .35s}
+.tag{position:absolute;right:-8px;bottom:-14px;background:var(--rose);color:#fff;font-weight:700;font-size:12px;padding:7px 13px;border-radius:999px;transform:translateZ(50px) rotate(4deg);box-shadow:0 10px 30px #ff7ab655}
+
+/* marquee */
+.mq{overflow:hidden;border-block:1px solid #ffffff14;padding:16px 0;background:#0e144566}
+.mq div{display:flex;gap:46px;width:max-content;animation:mq 28s linear infinite;font-size:30px}
+.mq:hover div{animation-play-state:paused}
+
+section{padding:120px 0}
+h2{font-size:clamp(34px,5.4vw,70px);line-height:.98;letter-spacing:-.045em;font-weight:800;max-width:780px}
+h2 em{font-family:var(--serif);font-weight:400;color:var(--halo)}
+.lead{color:var(--dim);max-width:480px;margin-top:18px;font-size:17px}
+
+/* features: mosaic with spotlight */
+.mos{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:54px}
+.t{position:relative;border-radius:28px;padding:30px;background:#0e1445;border:1px solid #ffffff16;overflow:hidden;min-height:230px;
+  display:flex;flex-direction:column;justify-content:flex-end;transition:transform .35s,border-color .35s}
+.t::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),#ffd88a30,transparent 70%);opacity:0;transition:opacity .3s}
+.t:hover{transform:translateY(-6px) rotate(-.4deg);border-color:#ffd88a66}
+.t:hover::before{opacity:1}
+.t .e{position:absolute;top:22px;right:26px;font-size:54px;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.t:hover .e{transform:scale(1.35) rotate(-14deg)}
+.t h3{font-size:24px;letter-spacing:-.03em;line-height:1.1;position:relative}
+.t p{color:var(--dim);font-size:14.5px;margin-top:8px;max-width:340px;position:relative}
+.t:nth-child(1){grid-column:span 4;min-height:300px;background:linear-gradient(135deg,#2a1f8f,#0e1445)}
+.t:nth-child(1) h3{font-size:clamp(30px,4vw,48px)}
+.t:nth-child(2){grid-column:span 2}
+.t:nth-child(3){grid-column:span 2}
+.t:nth-child(4){grid-column:span 2;background:linear-gradient(160deg,#0e1445,#0b3a63)}
+.t:nth-child(5){grid-column:span 2}
+
+/* scroll lit statement */
+.say{font-size:clamp(28px,4.6vw,60px);line-height:1.12;letter-spacing:-.04em;font-weight:600;max-width:1000px}
+.say span{opacity:.18;transition:opacity .25s,color .25s}
+.say span.on{opacity:1}
+.say span.on.k{color:var(--halo)}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.pills span{padding:9px 18px;border-radius:999px;border:1px solid #ffffff22;font-size:14px;color:var(--dim)}
+
+/* plans: ascension */
+.ladder{margin-top:54px;border-top:1px solid #ffffff1a}
+.rung{display:grid;grid-template-columns:1.2fr 2fr 1fr;gap:20px;align-items:center;padding:26px 8px;border-bottom:1px solid #ffffff1a;position:relative;cursor:default;transition:padding .4s,background .4s}
+.rung:hover{padding:40px 22px;background:linear-gradient(90deg,#ffd88a14,transparent)}
+.rung h4{font-size:clamp(26px,3.6vw,46px);letter-spacing:-.04em;line-height:1;transition:color .3s}
+.rung:hover h4{color:var(--halo)}
+.rung h4 small{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:.5em;color:var(--dim);letter-spacing:0;margin-top:4px}
+.fill{height:10px;border-radius:99px;background:#ffffff14;overflow:hidden}
+.fill i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--sky),var(--halo));box-shadow:0 0 18px var(--halo);transition:width 1.4s cubic-bezier(.2,.9,.2,1)}
+.rung.in .fill i{width:var(--w)}
+.facts{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:13.5px;color:var(--dim)}
+.facts b{color:var(--pearl);font-variant-numeric:tabular-nums}
+.price{text-align:right;font-size:clamp(24px,3vw,38px);font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+.price span{display:block;font-size:12.5px;font-weight:400;color:var(--dim);letter-spacing:0}
+
+/* cta */
+.cta{text-align:center;padding:140px 0 60px;position:relative;overflow:hidden}
+.big{font-size:clamp(70px,19vw,260px);line-height:.85;letter-spacing:-.07em;font-weight:800;color:transparent;-webkit-text-stroke:2px #ffffff40;
+  background:linear-gradient(180deg,var(--halo),transparent 80%);-webkit-background-clip:text;background-clip:text;margin-top:-6px;user-select:none;transition:-webkit-text-stroke-color .3s}
+.cta:hover .big{-webkit-text-stroke-color:var(--halo)}
+.cta h3{font-size:clamp(26px,3.6vw,42px);letter-spacing:-.04em;max-width:640px;margin:0 auto 14px}
+.cta p{color:var(--dim);max-width:460px;margin:0 auto 30px}
+.cta .btns{justify-content:center;opacity:1;animation:none}
+.badges{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:26px;font-size:13px;color:var(--dim)}
+footer{border-top:1px solid #ffffff14;padding:26px 0 calc(26px + env(safe-area-inset-bottom,0px));font-size:13px;color:var(--dim)}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+footer a:hover{color:var(--halo)}
+.ver{padding:3px 12px;border-radius:99px;background:#ffd88a1f;color:var(--halo)}
+.heart{display:inline-block;color:var(--rose);animation:beat 1.2s infinite}
+#top{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:1px solid #ffffff30;background:#0e1445cc;color:var(--halo);font-size:18px;cursor:pointer;z-index:90;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(10px)}
+#top.v{opacity:1;pointer-events:auto}
+#top:hover{transform:translateY(-4px)}
+
+.rv{opacity:0;transform:translateY(40px) scale(.98);filter:blur(6px);transition:opacity .9s,transform .9s cubic-bezier(.2,.9,.2,1),filter .9s}
+.rv.v{opacity:1;transform:none;filter:none}
+
+@keyframes rise{to{transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{50%{transform:translateZ(60px) rotateX(70deg) translateY(-8px)}}
+@keyframes sheen{to{transform:translateX(120%)}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes chip{from{transform:scale(0)}}
+@keyframes bump{50%{transform:scale(1.25)}}
+@keyframes ping{70%{box-shadow:0 0 0 10px #7cc7ff00}}
+@keyframes beat{14%,42%{transform:scale(1.3)}28%,70%{transform:scale(1)}}
+
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;text-align:center}
+  .desc{margin-inline:auto}.btns,.sub{justify-content:center}
+  .mos{grid-template-columns:1fr 1fr}.t:nth-child(n){grid-column:span 2;min-height:200px}
+  .t:nth-child(n+2):nth-child(-n+3){grid-column:span 1}
+  .rung{grid-template-columns:1fr auto}.rung .mid{grid-column:1/-1;order:3}
+  section{padding:84px 0}
+}
+@media(max-width:560px){
+  .nav a.l{display:none}
+  .btns .b{width:100%;justify-content:center}
+  .t:nth-child(n){grid-column:span 2!important}
+  .tag{right:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  h1 .ln span,.desc,.btns,.post{opacity:1;transform:none}
+  .rv{opacity:1;transform:none;filter:none}
+}
+
+:root{--e:cubic-bezier(.22,1,.36,1)}
+.i{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.18em;flex-shrink:0}
+.b .i,.go .i{width:16px;height:16px}
+.gl{width:1em;height:1em;display:block;filter:drop-shadow(0 3px 8px #00000066)}
+.pop{font-size:30px;line-height:1;top:0;left:0}
+.pop{margin:0}
+.mq span{display:block}
+.chip .gl{width:17px;height:17px}
+.heart{display:inline-block;vertical-align:-2px}.heart .gl{width:14px;height:14px}
+.badges span{display:inline-flex;align-items:center;gap:8px}.badges .i{color:var(--halo)}
+#top .i{width:18px;height:18px}
+.t .e{width:60px;height:60px;font-size:0;display:grid;place-items:center;border-radius:20px;color:var(--halo);
+  background:linear-gradient(145deg,#ffffff24,#ffffff08);border:1px solid #ffffff28;box-shadow:inset 0 1px 0 #ffffff30,0 10px 30px #00000040;
+  transition:transform .8s var(--e),box-shadow .5s,background .5s}
+.t .e .i{width:28px;height:28px;stroke-width:1.5}
+.t:hover .e{transform:translateY(-4px) rotate(-8deg) scale(1.1);box-shadow:inset 0 1px 0 #ffffff40,0 14px 40px #ffd88a44;background:linear-gradient(145deg,#ffd88a33,#ffffff08)}
+.t{transition:transform .8s var(--e),border-color .5s}
+.t:hover{transform:translateY(-6px)}
+.post{transition:none;will-change:transform}
+.b,.go{transition:translate .6s var(--e),transform .4s var(--e),background .3s,box-shadow .4s,border-color .3s}
+.rv{filter:none;transform:translateY(34px);transition:opacity 1.1s var(--e),transform 1.1s var(--e)}
+.rv.v{transform:none}
+.rung{isolation:isolate}
+.rung:hover{padding:26px 8px;background:none}
+.rung::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#ffd88a22,transparent 80%);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--e)}
+.rung:hover::before{transform:scaleX(1)}
+.rung>*{transition:transform .7s var(--e)}
+.rung:hover>*{transform:translateX(16px)}
+.rung:hover .price{transform:translateX(-16px)}
+.fill i{transition:width 1.8s var(--e)}
+.say span{transition:opacity .5s var(--e),color .5s}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3cc"/><stop offset=".5" stop-color="#ffd88a"/><stop offset="1" stop-color="#ff9a5a"/></linearGradient>
+<linearGradient id="gRose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd0e8"/><stop offset=".5" stop-color="#ff7ab6"/><stop offset="1" stop-color="#c93c8f"/></linearGradient>
+<linearGradient id="gSky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0f3ff"/><stop offset=".5" stop-color="#7cc7ff"/><stop offset="1" stop-color="#6a6cff"/></linearGradient>
+<symbol id="r-heart" viewBox="0 0 24 24"><path fill="url(#gRose)" stroke="#fff6" stroke-width=".7" d="M12 21S4.5 16.4 2.5 11.8C1.2 8.6 3 5 6.4 5c2 0 3.6 1.1 5.6 3.2C14 6.1 15.6 5 17.6 5c3.4 0 5.2 3.6 3.9 6.8C19.5 16.4 12 21 12 21z"/><path fill="#fff" opacity=".45" d="M6.6 7.2c-1.4.1-2.3 1.4-2 2.8.2-1.5 1.1-2.4 2.6-2.5z"/></symbol>
+<symbol id="r-flame" viewBox="0 0 24 24"><path fill="url(#gGold)" stroke="#fff6" stroke-width=".7" d="M12 2c.9 4.2 5.5 6.2 5.5 11.2a5.5 5.5 0 0 1-11 0c0-2 .9-3.6 2.2-4.8.1 1.9 1 3 2.2 3.2C10.3 8 10.6 5 12 2z"/><path fill="url(#gRose)" opacity=".85" d="M12 21a3 3 0 0 1-3-3c0-1.6 1.4-2.6 2-4 .8 1 1 1.6 1.4 2.2.3-.4.4-.8.4-1.2 1.2 1 2.2 2.2 2.2 3A3 3 0 0 1 12 21z"/></symbol>
+<symbol id="r-star" viewBox="0 0 24 24"><path fill="url(#gGold)" stroke="#fff6" stroke-width=".7" stroke-linejoin="round" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+<symbol id="r-sparkle" viewBox="0 0 24 24"><path fill="url(#gSky)" stroke="#fff6" stroke-width=".7" d="M12 2c.8 5.2 3.8 8.2 10 10-6.2 1.8-9.2 4.8-10 10-.8-5.2-3.8-8.2-10-10C8.200 10.200 11.200 7.200 12 2z"/></symbol>
+<symbol id="r-bolt" viewBox="0 0 24 24"><path fill="url(#gGold)" stroke="#fff6" stroke-width=".7" stroke-linejoin="round" d="M13.500 2L4.500 13.500h6L9.500 22l9-12h-6z"/></symbol>
+<symbol id="r-gem" viewBox="0 0 24 24"><path fill="url(#gSky)" stroke="#fff6" stroke-width=".7" stroke-linejoin="round" d="M6 3.500h12l3.500 5.500L12 21 2.500 9z"/><path fill="none" stroke="#fff9" stroke-width=".7" stroke-linejoin="round" d="M2.500 9h19M9 3.500L7.500 9 12 21l4.500-12L15 3.500"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.500"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.700 5.600 6.100.8-4.500 4.200 1.100 6.100L12 16.800 6.600 19.700l1.100-6.100L3.200 9.400l6.100-.8z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></symbol>
+<symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.600 2.400 2.400 4 2.400s3-.8 4-2.400M9 9.500h.01M15 9.500h.01"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.500h.01M7 16.500h.01M11 7.500h6M11 16.500h6"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3.500"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><path d="M9 13.500h.01M15 13.500h.01M9.500 17h5"/></symbol>
+</defs></svg>
+<div id="bar"></div>
+<div id="sky"></div>
+<div id="glow"></div>
+<div id="fx" aria-hidden="true"></div>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <b><span class="ring"></span>Seen Angel</b>
+    <a class="l" href="#features">Features</a>
+    <a class="l" href="#plans">Plans</a>
+    <a class="l" href="https://t.me/SeenReact_app" target="_blank" rel="noopener">Telegram Bot</a>
+    <a class="go" href="https://t.me/SeenReact_app" target="_blank" rel="noopener">Launch <svg class="i"><use href="#i-bolt"/></svg></a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" style="padding-bottom:60px">
+  <div class="wrap">
+    <div>
+      <h1 aria-label="Seen Angel react bot">
+        <span class="ln"><span>Seen</span></span>
+        <span class="ln"><span>Angel</span></span>
+      </h1>
+      <div class="sub"><i></i>Telegram automation · react bot</div>
+      <p class="desc">Automate reactions on Telegram channel posts with customizable standard and custom emojis.</p>
+      <div class="btns">
+        <a href="#plans" class="b p">View Plans <svg class="i"><use href="#i-arrow"/></svg></a>
+        <a href="https://t.me/SeenReact_app" target="_blank" rel="noopener" class="b">Open Bot</a>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="post" id="post">
+        <div class="halo"></div>
+        <div class="pic"><img src="/assets/cover.png" alt="Seen Angel" onerror="this.remove()"></div>
+        <div class="meta"><strong>Your channel</strong>New post · reactions arriving live</div>
+        <div class="chips" id="chips"></div>
+        <div class="tag">auto-react ON</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="rv">
+      <h2>Why <em>Seen Angel?</em></h2>
+      <p class="lead">Telegram channel reactions, custom emoji selection, referral XP and secure Stars subscriptions.</p>
+    </div>
+    <div class="mos">
+      <div class="t rv"><span class="e"><svg class="i"><use href="#i-bolt"/></svg></span><h3>Fast Reactions</h3><p>Fast reaction processing on your persistent.</p></div>
+      <div class="t rv"><span class="e"><svg class="i"><use href="#i-shield"/></svg></span><h3>Privacy First</h3><p>Only metadata is stored — never message content. Your chats stay private, as they should.</p></div>
+      <div class="t rv"><span class="e"><svg class="i"><use href="#i-smile"/></svg></span><h3>Smart Reactions</h3><p>Configurable emoji list with randomization levels. Reacts naturally to messages, not robotically.</p></div>
+      <div class="t rv"><span class="e"><svg class="i"><use href="#i-server"/></svg></span><h3>Pterodactyl Node server</h3><p>Run the bot continuously.</p></div>
+      <div class="t rv"><span class="e"><svg class="i"><use href="#i-bot"/></svg></span><h3>Multi-Bot</h3><p>Connect the main bot and the worker bots you control from one persistent</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="rv" style="margin-bottom:40px">Built for Telegram <em>communities</em></h2>
+    <p class="say" id="say">“Seen Angel” helps keep your Telegram groups active and engaging by automatically reacting to messages with customizable emojis. The bot backend stays on your Pterodactyl Node.js server; the website can be hosted separately.</p>
+    <div class="pills rv"><span>Fast</span><span>Customizable</span><span>Privacy First</span><span>Pterodactyl Node server</span></div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="wrap">
+    <div class="rv">
+      <h2>Choose your <em>access</em></h2>
+      <p class="lead">The bot backend runs on your Pterodactyl Node.js server. Upgrade securely with Telegram Stars inside the bot.</p>
+    </div>
+    <div class="ladder">
+      <div class="rung rv"><h4>Free<small>Start free</small></h4><div class="mid"><div class="fill"><i style="--w:5%"></i></div><div class="facts"><span><b>50</b> reaction credits</span><span><b>8</b> emoji slots</span><span><b>1</b> project</span></div></div><div class="price">0 Stars<span>&nbsp;</span></div></div>
+      <div class="rung rv"><h4>Pro<small>30 days</small></h4><div class="mid"><div class="fill"><i style="--w:20%"></i></div><div class="facts"><span><b>1,000</b> reaction credits</span><span><b>16</b> emoji slots</span><span><b>3</b> projects</span></div></div><div class="price">100 Stars<span>100 XTR</span></div></div>
+      <div class="rung rv"><h4>Premium<small>30 days</small></h4><div class="mid"><div class="fill"><i style="--w:40%"></i></div><div class="facts"><span><b>2,000</b> reaction credits</span><span><b>24</b> emoji slots</span><span><b>10</b> projects</span></div></div><div class="price">200 Stars<span>200 XTR</span></div></div>
+      <div class="rung rv"><h4>Gold<small>30 days</small></h4><div class="mid"><div class="fill"><i style="--w:60%"></i></div><div class="facts"><span><b>3,000</b> reaction credits</span><span><b>40</b> emoji slots</span><span><b>30</b> projects</span></div></div><div class="price">300 Stars<span>300 XTR</span></div></div>
+      <div class="rung rv"><h4>Elite<small>30 days</small></h4><div class="mid"><div class="fill"><i style="--w:100%"></i></div><div class="facts"><span><b>5,000</b> reaction credits</span><span><b>80</b> emoji slots</span><span><b>100</b> projects</span></div></div><div class="price">500 Stars<span>500 XTR</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="rv">
+      <h3>Ready to use Seen Angel react bot?</h3>
+      <p>Choose your access level, configure your emoji set and manage real Telegram reactions from one clean panel.</p>
+      <div class="btns">
+        <a href="https://t.me/SeenReact_app" target="_blank" rel="noopener" class="b p" id="tryBtn">Try on Telegram <svg class="i"><use href="#i-chat"/></svg></a>
+        <a href="https://t.me/SeenReact_app" target="_blank" rel="noopener" class="b">Telegram Bot</a>
+      </div>
+      <div class="badges"><span><svg class="i"><use href="#i-bolt"/></svg> Real API reactions</span><span><svg class="i"><use href="#i-lock"/></svg> Owner controls</span><span><svg class="i"><use href="#i-star"/></svg> Telegram Stars</span></div>
+    </div>
+    <div class="big" aria-hidden="true" id="big">Angel</div>
+  </div>
+</section>
+</main>
+
+<button id="top" aria-label="Back to top"><svg class="i"><use href="#i-up"/></svg></button>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Seen Angel react bot</span>
+    <span>Built with <span class="heart"><svg class="gl"><use href="#r-heart"/></svg></span> by <a href="https://t.me/SeenReact_app">Seen Angel</a> <span class="ver">v3.0</span></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var E = ['heart','flame','star','sparkle','bolt','gem'];
+  function g(n){return '<svg class="gl"><use href="#r-'+n+'"/></svg>'}
+  var $ = function(s){return document.querySelector(s)};
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* emoji marquee */
+  var m = ''; for(var r=0;r<4;r++) E.forEach(function(e){m += '<span>'+g(e)+'</span>'});
+  $('#mq').innerHTML = m + m;
+
+  /* glyph burst: real parabolic physics */
+  var fx = $('#fx');
+  function burst(x,y,n){
+    if(reduce) return;
+    n = n || 9;
+    for(var i=0;i<n;i++){
+      var p = document.createElement('span');
+      p.className = 'pop'; p.innerHTML = g(E[Math.floor(Math.random()*E.length)]);
+      p.style.left = x+'px'; p.style.top = y+'px';
+      fx.appendChild(p);
+      var a = -Math.PI/2 + (Math.random()-.5)*2.3, v = 150+Math.random()*200,
+          vx = Math.cos(a)*v, vy = Math.sin(a)*v, G = 440, T = 1.15+Math.random()*.55,
+          rot = (Math.random()-.5)*320, sc = .7+Math.random()*.7, kf = [];
+      for(var k=0;k<=12;k++){
+        var t = k/12, tt = t*T, grow = t<.12 ? t/.12 : 1, fade = t>.7 ? 1-(t-.7)/.3 : 1;
+        kf.push({transform:'translate('+(vx*tt)+'px,'+(vy*tt+.5*G*tt*tt)+'px) translate(-50%,-50%) rotate('+(rot*t)+'deg) scale('+(sc*grow*(.6+.4*fade))+')',opacity:fade});
+      }
+      p.animate(kf,{duration:T*1000,easing:'linear'}).onfinish = (function(el){return function(){el.remove()}})(p);
+    }
+  }
+  document.addEventListener('pointerdown', function(e){ burst(e.clientX, e.clientY, 7) });
+
+  /* smooth cursor glow + 3D tilt (one eased loop) */
+  var glow = $('#glow'), post = $('#post'), fine = matchMedia('(pointer:fine)').matches,
+      mx = innerWidth/2, my = innerHeight/2, gx = mx, gy = my, rx = 0, ry = 0;
+  if(fine) addEventListener('pointermove', function(e){ mx = e.clientX; my = e.clientY }); else glow.style.opacity = 0;
+  (function tick(){
+    gx += (mx-gx)*.12; gy += (my-gy)*.12;
+    glow.style.transform = 'translate('+gx+'px,'+gy+'px)';
+    if(fine && !reduce){
+      var r = post.getBoundingClientRect(),
+          tx = Math.max(-1,Math.min(1,(my-(r.top+r.height/2))/520))*-11,
+          ty = Math.max(-1,Math.min(1,(mx-(r.left+r.width/2))/520))*13;
+      rx += (tx-rx)*.08; ry += (ty-ry)*.08;
+      post.style.transform = 'rotateX('+rx+'deg) rotateY('+ry+'deg)';
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  /* live reactions on hero post */
+  var chips = $('#chips'), counts = {}, order = ['flame','heart','star','sparkle','gem'];
+  function addReaction(){
+    var e = order[Math.floor(Math.random()*order.length)];
+    if(!counts[e]){
+      var c = document.createElement('span'); c.className='chip';
+      c.innerHTML = g(e)+' <b>1</b>'; chips.appendChild(c); counts[e] = {el:c, n:1};
+    } else {
+      var o = counts[e]; o.n += 1 + Math.floor(Math.random()*3);
+      o.el.querySelector('b').textContent = o.n;
+      o.el.classList.remove('bump'); void o.el.offsetWidth; o.el.classList.add('bump');
+    }
+    var r = $('#post').getBoundingClientRect();
+    burst(r.left + 40 + Math.random()*(r.width-80), r.top + r.height*0.55, 1);
+  }
+  setTimeout(function loop(){ addReaction(); setTimeout(loop, 650 + Math.random()*900) }, 1200);
+
+  /* magnetic buttons */
+  if(fine && !reduce) document.querySelectorAll('.b,.go').forEach(function(el){
+    el.addEventListener('pointermove', function(e){
+      var r = el.getBoundingClientRect();
+      el.style.translate = ((e.clientX-r.left-r.width/2)*.22)+'px '+((e.clientY-r.top-r.height/2)*.28)+'px';
+    });
+    el.addEventListener('pointerleave', function(){ el.style.translate = '' });
+  });
+
+  /* spotlight on tiles */
+  document.querySelectorAll('.t').forEach(function(t){
+    t.addEventListener('pointermove', function(e){
+      var r = t.getBoundingClientRect();
+      t.style.setProperty('--mx', (e.clientX-r.left)+'px'); t.style.setProperty('--my', (e.clientY-r.top)+'px');
+    });
+  });
+
+  /* scroll-lit statement */
+  var say = $('#say'), words = say.textContent.trim().split(/\s+/);
+  var key = /Telegram|Seen|Angel|reacting|emojis|Pterodactyl/;
+  say.innerHTML = words.map(function(w){return '<span'+(key.test(w)?' class="k"':'')+'>'+w+'</span>'}).join(' ');
+  var spans = say.querySelectorAll('span');
+
+  /* reveal + ladder fill */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('v'); if(en.target.classList.contains('rung')) en.target.classList.add('in'); io.unobserve(en.target) } });
+  },{threshold:.2});
+  document.querySelectorAll('.rv').forEach(function(el,i){ el.style.transitionDelay = (i%5)*60+'ms'; io.observe(el) });
+
+  /* scroll handler */
+  var bar = $('#bar'), top = $('#top'), big = $('#big');
+  function onScroll(){
+    var y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX('+(h>0?y/h:0)+')';
+    top.classList.toggle('v', y>500);
+    var vh = innerHeight, sr = say.getBoundingClientRect();
+    var prog = (vh*0.85 - sr.top) / (sr.height + vh*0.3);
+    var lit = Math.round(Math.max(0,Math.min(1,prog)) * spans.length);
+    spans.forEach(function(s,i){ s.classList.toggle('on', i < lit) });
+    if(!reduce){ var br = big.getBoundingClientRect(); big.style.transform = 'translateY('+Math.max(-40,Math.min(60,(br.top-vh)*0.06))+'px) scale('+(1+Math.max(0,(vh-br.top))/vh*0.06)+')' }
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  top.addEventListener('click', function(){ scrollTo({top:0,behavior:'smooth'}) });
+
+  /* smooth anchors */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.querySelector(a.getAttribute('href'));
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}) }
+    });
+  });
+})();
+</script>
+</body>
+</html>
